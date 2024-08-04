@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendship Greeting Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0b2653;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            animation: backgroundColorChange 10s infinite alternate;
+            position: relative;
+        }
+
+        @keyframes backgroundColorChange {
+            0% { background-color: #0b2653; }
+            100% { background-color: #f4f4f4; }
+        }
+
+        .card {
+            background: linear-gradient(135deg, #00ccd0 0%, #00794b64 100%);
+            width: 700px;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            opacity: 0; /* Start hidden */
+            transform: scale(0.8); /* Start scaled down */
+            transition: opacity 2s, transform 2s; /* Smooth transition */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8); /* Center and scale down */
+        }
+
+        .card-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 2s forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h1 {
+            color: #61fff7;
+            font-size: 2em;
+            margin-bottom: 10px;
+            animation: textColorChange 5s infinite alternate;
+        }
+
+        @keyframes textColorChange {
+            0% { color: #26895b; }
+            100% { color: #7a81ff; }
+        }
+
+        .card p {
+            color: #161516;
+            line-height: 1.6;
+            font-size: 1em;
+            animation: textFadeIn 3s forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes textFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .card .signature {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #61baff;
+            animation: textColorChange 5s infinite alternate;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .icons i {
+            font-size: 2em;
+            margin: 0 10px;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            animation: iconBounce 2s infinite;
+        }
+
+        .icons .heart {
+            background-color: #ff6f61;
+        }
+
+        .icons .star {
+            background-color: #ffd700;
+        }
+
+        .icons .smile {
+            background-color: #8c1e2f;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .icons .confetti {
+            background-color: #ff6347;
+            animation: iconRotate 2s infinite linear;
+        }
+
+        .icons .balloon {
+            background-color: #87ceeb;
+            animation: iconRotate 2s infinite linear reverse;
+        }
+
+        @keyframes iconRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .reveal-button {
+            background-color: #61baff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2; /* Ensure button is above balloons */
+        }
+
+        .reveal-button:hover {
+            background-color: #5593d6;
+        }
+
+        .balloons-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1; /* Place balloons behind content */
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 70px;
+            background-color: #ff6347;
+            border-radius: 50% 50% 0 0;
+            animation: balloonAnimation 5s ease-in infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes balloonAnimation {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="reveal-button" onclick="revealContent()">Show Greeting</button>
+    <div class="balloons-animation">
+        <!-- Balloons will be added dynamically -->
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <h1>Happy Friendship Day!</h1>
+            <p>Dear CareerX Team,</p>
+            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+                Thank you, CareerX Team <strong>(Amarnath Sir, Praveen Sir, Srikanth Sir, Jayanth Sir)</strong>, for being a part of my life.
+                 I am so thankful and very happy to have joined this course. I feel very happy with the way <strong>Praveen Sir</strong> explains the topics. 
+                 You all treated us like your own students in this short journey. Once again,<strong>Happy Friendship Day to the entire 
+                    CareerX team and friends.</strong> 
+            </p>
+            <p class="signature"><strong>To CareerX Team</strong></p>
+            <div class="icons">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-smile smile"></i>
+                <i class="fas fa-confetti confetti"></i>
+                <i class="fas fa-balloon balloon"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealContent() {
+            // Show the card and hide the button
+            const card = document.querySelector('.card');
+            const button = document.querySelector('.reveal-button');
+            card.style.opacity = '1';
+            card.style.transform = 'translate(-50%, -50%) scale(1)';
+            button.style.display = 'none'; // Hide the button
+
+            // Generate balloons
+            const balloonContainer = document.querySelector('.balloons-animation');
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                balloon.style.left = `${Math.random() * 100}vw`;
+                balloon.style.animationDelay = `${Math.random() * 5}s`;
+                balloonContainer.appendChild(balloon);
+            }
+        }
+    </script>
+</body>
+</html>
